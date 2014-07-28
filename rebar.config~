@@ -1,0 +1,20 @@
+{sub_dirs, [
+            "apps/bidder",
+            "apps/decision-engine",
+	    "apps/budget-pacer",
+            "rel"
+           ]}.
+
+{lib_dirs,["deps", "apps"]}.
+
+%no need to run deps unit tests
+{eunit_exclude_deps, true}.
+
+{deps, [
+       {'cowboy', ".*", {git, "https://github.com/extend/cowboy.git", "0.10.0"}},
+       {'jiffy', ".*", {git, "https://github.com/davisp/jiffy.git", "0.11.3"}}
+]}.
+
+{erl_opts, [debug_info, fail_on_warning, {d, 'NOTEST'}]}.
+{cover_enabled, true}.
+{require_otp_vsn, "R17"}.

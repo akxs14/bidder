@@ -1,0 +1,12 @@
+{application, budget-pacer,
+ [
+  {description, ""},
+  {vsn, "1"},
+  {registered, []},
+  {applications, [
+                  kernel,
+                  stdlib
+                 ]},
+  {mod, { budget-pacer_app, []}},
+  {env, []}
+ ]}.
