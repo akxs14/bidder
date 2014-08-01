@@ -1,17 +1,19 @@
-compile:
-	rebar compile
+PROJECT = bidder
+
+DEPS = cowboy jiffy
+dep_cowboy = https://github.com/extend/cowboy.git 0.10.0
+dep_jiffy = https://github.com/davisp/jiffy.git 0.11.3
  
-deps:
-	rebar get-deps
- 
-generate:
-	cd rel
-	rm -rf bidder
-	rebar generate
+.PHONY: release clean-release
 
-console:
-	. rel/bidder/bin/bidder console
+release: 
+	relx -o rel/bidder
+	chmod a+x rel/bidder/bidder/bin/bidder
 
-run:
-	erl -pa ebin/ -pa apps/bidder/ebin/
+clean-release: 
+	rm -rf rel/bidder
 
+start:
+	sh rel/bidder/bidder/bin/bidder
+
+include erlang.mk
