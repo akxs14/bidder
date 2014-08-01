@@ -11,8 +11,7 @@ generate:
 
 console:
 	. rel/bidder/bin/bidder console
- 
-rel: deps compile generate reto_server-rel
 
 run:
-	erl -pa ebin deps/*/ -s reto_launch
+	erl -pa ebin/ -pa apps/bidder/ebin/
+
