@@ -68,7 +68,3 @@ init([]) ->
   Restart, Shutdown, Type, ['bidder_worker']},
 
   {ok, {SupFlags, [Child]}}.
-
-
-
-
