@@ -1,8 +1,8 @@
 PROJECT = bidder
 
 DEPS = cowboy jiffy
-dep_cowboy = https://github.com/extend/cowboy.git 0.10.0
-dep_jiffy = https://github.com/davisp/jiffy.git 0.11.3
+dep_cowboy = https://github.com/extend/cowboy.git master
+dep_jiffy = https://github.com/davisp/jiffy.git master
  
 .PHONY: release clean-release
 
