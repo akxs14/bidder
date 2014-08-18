@@ -6,8 +6,9 @@
   {applications, [
                   kernel,
                   stdlib,
-                  mnesia
+                  mnesia,
+                  cowboy
                  ]},
   {mod, { bidder_app, []}},
-  {env, []}
+  {env, [{http_port, 8080}]}
  ]}.
