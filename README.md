@@ -1,4 +1,0 @@
-bidder
-======
-
-RTB bidder node

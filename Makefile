@@ -1,9 +1,9 @@
-PROJECT = bidder
+PROJECT = master_banker
 
-DEPS = cowboy jiffy
-dep_cowboy = https://github.com/extend/cowboy.git master
-dep_jiffy = https://github.com/davisp/jiffy.git master
- 
+DEPS = cowboy, jiffy
+dep_cowboy = git@github.com:extend/cowboy.git master
+dep_jiffy = git@github.com:davisp/jiffy.git master
+
 .PHONY: release clean-release
 
 release: 
@@ -11,18 +11,18 @@ release:
 	relx -o rel
 
 clean-release: 
-	rm -rf rel/bidder
+	rm -rf rel/master_banker
 
 chmod:
-	chmod a+x rel/bidder/bin/bidder
+	chmod a+x rel/master_banker/bin/master_banker
 
 start:
-	sh rel/bidder/bin/bidder
+	sh rel/master_banker/bin/master_banker
 
 full:
 	rebar compile
 	relx -o rel
-	chmod a+x rel/bidder/bin/bidder
-	sh rel/bidder/bin/bidder
+	chmod a+x rel/master_banker/bin/master_banker
+	sh rel/master_banker/bin/master_banker
 
 include erlang.mk
