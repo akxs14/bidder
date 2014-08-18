@@ -1,9 +1,0 @@
-{release,{"master_banker","0.0.1"},
-         {erts,"6.1"},
-         [{kernel,"3.0.1"},
-          {stdlib,"2.1"},
-          {mnesia,"4.12.1"},
-          {bidder,"1"},
-          {budget_pacer,"1"},
-          {decision_engine,"1"},
-          {crypto,"3.4"}]}. 

@@ -1,9 +1,0 @@
-{application,decision_engine,
-             [{description,[]},
-              {vsn,"1"},
-              {registered,[]},
-              {applications,[kernel,stdlib]},
-              {mod,{decision_engine_app,[]}},
-              {env,[]},
-              {modules,[decision_engine_app,decision_engine_sup,
-                        decision_engine_worker]}]}.
