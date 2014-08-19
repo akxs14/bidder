@@ -5,3 +5,6 @@ deps
 *.plt
 erl_crash.dump
 vagrant/.vagrant
+rel/bidder/bin
+rel/bidder/erts-6.1
+rel/bidder/lib
