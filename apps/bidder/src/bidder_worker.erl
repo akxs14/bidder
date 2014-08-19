@@ -61,6 +61,9 @@ bidder_retire(ID) ->
 %% ---------------------------------------------------------------------------
 
 init([]) ->
+  MasterBankerHostname = 'master_banker@127.0.0.1',
+  net_adm:ping(MasterBankerHostname),
+  rpc:call(MasterBankerHostname, master_banker_worker, bidder_announce, [node()]),
   {ok, #state{}}.
 
 handle_call({bidder_announce, ID}, _From, State) ->
