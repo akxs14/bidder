@@ -5,4 +5,6 @@
               {applications,[kernel,stdlib,mnesia,cowboy]},
               {mod,{bidder_app,[]}},
               {env,[{http_port,8080}]},
-              {modules,[bidder_app,bidder_sup,bidder_worker]}]}.
+              {modules,[bidder_app,bidder_sup,bidder_worker,
+                        openrtb2_bid_request_handler,
+                        openrtb2_bid_request_parser,router]}]}.
