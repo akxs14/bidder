@@ -17,7 +17,7 @@
 %%% Constant definitions
 %%% -----------------------------------------------------------------------------
 
--define(BANKERHOST, "master_banker@master-banker1.attalon.com").
+-define(BANKERHOST, 'master_banker@master-banker1.attalon.com').
 
 
 %%-----------------------------------------------------------------------------
