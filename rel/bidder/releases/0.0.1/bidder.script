@@ -1,4 +1,4 @@
-%% script generated at {2014,8,31} {0,21,29}
+%% script generated at {2014,9,27} {19,15,42}
 {script,
     {"bidder","0.0.1"},
     [{preLoaded,
@@ -67,7 +67,7 @@
          [bidder_app,bidder_sup,bidder_worker,openrtb2_bid_request_handler,
           openrtb2_bid_request_parser,router]},
      {path,["$ROOT/lib/budget_pacer-1/ebin"]},
-     {primLoad,[budget_pacer_app,budget_pacer_sup,budget_pacer_worker]},
+     {primLoad,[budget_pacer_app,budget_pacer_sup,budget_pacer_worker,crone]},
      {path,["$ROOT/lib/decision_engine-1/ebin"]},
      {primLoad,
          [decision_engine_app,decision_engine_sup,decision_engine_worker]},
@@ -263,8 +263,8 @@
                    {vsn,"1"},
                    {id,[]},
                    {modules,
-                       [budget_pacer_app,budget_pacer_sup,
-                        budget_pacer_worker]},
+                       [budget_pacer_app,budget_pacer_sup,budget_pacer_worker,
+                        crone]},
                    {registered,[]},
                    {applications,[kernel,stdlib]},
                    {included_applications,[]},

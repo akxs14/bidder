@@ -30,7 +30,8 @@ terminate(_Reason, _Req, _State) ->
 
 handle_bid_request(Req, State) ->
   {ok, Body, Req1} = cowboy_req:body(Req),
-  openrtb2_bid_request_parser:parse(Body),
+  BidRequest = openrtb2_bid_request_parser:parse(Body),
+  % BidResponse = decision_engine_worker:select_
   {ok, Req2} = cowboy_req:reply(200, 
     [{<<"content-type">>, <<"application/json">>}], 
      jiffy:encode(<<"{\"rest\": \"Hello World!!!!\"}">>), Req ),
