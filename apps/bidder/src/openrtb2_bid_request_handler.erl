@@ -1,14 +1,18 @@
 -module(openrtb2_bid_request_handler).
 
--export([init/3]).
--export([allowed_methods/2]).
--export([content_types_accepted/2]).
--export([handle_bid_request/2]).
--export([terminate/3]).
+%%% -----------------------------------------------------------------------------
+%% API Function Exports
+%%% -----------------------------------------------------------------------------
 
-%% ===================================================================
-%% Cowboy API
-%% ===================================================================
+-export([ init/3,
+          allowed_methods/2,
+          content_types_accepted/2,
+          handle_bid_request/2,
+          terminate/3]).
+
+%% ---------------------------------------------------------------------------
+%% API Function Definitions
+%% ---------------------------------------------------------------------------
 
 init(_Transport, _Req, []) ->
     {upgrade, protocol, cowboy_rest}.
@@ -24,15 +28,32 @@ content_types_accepted(Req, State) ->
 terminate(_Reason, _Req, _State) ->
   ok.
 
-%% ===================================================================
-%% Internal functions
-%% ===================================================================
+%%% -----------------------------------------------------------------------------
+%%% Internal Function Definitions
+%%% -----------------------------------------------------------------------------
 
 handle_bid_request(Req, State) ->
-  {ok, Body, Req1} = cowboy_req:body(Req),
+  {ok, Body, _Req1} = cowboy_req:body(Req),
   BidRequest = openrtb2_bid_request_parser:parse(Body),
-  % BidResponse = decision_engine_worker:select_
+  {ToBid, BidResponse, Bid} = decision_engine_worker:decide(BidRequest),
+  case ToBid of
+    no_bid ->
+      HTTPResponse = reply_no_bid(Req);
+    bid ->
+      HTTPResponse = reply_bid(Req, BidResponse, Bid)
+  end,
+  {halt, HTTPResponse, State}.
+
+
+reply_no_bid(Req) ->
   {ok, Req2} = cowboy_req:reply(200, 
     [{<<"content-type">>, <<"application/json">>}], 
      jiffy:encode(<<"{\"rest\": \"Hello World!!!!\"}">>), Req ),
-  {halt, Req2, State}.
+  Req2.
+
+reply_bid(Req, _BidResponse, Bid) ->
+  {ok, Req2} = cowboy_req:reply(200, 
+    [{<<"content-type">>, <<"application/json">>}], 
+     jiffy:encode(<<"{\"rest\": \"Hello World!!!!\"}">>), Req ),
+  Req2.
+

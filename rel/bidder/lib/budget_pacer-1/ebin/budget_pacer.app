@@ -5,5 +5,5 @@
               {applications,[kernel,stdlib]},
               {mod,{budget_pacer_app,[]}},
               {env,[]},
-              {modules,[budget_pacer_app,budget_pacer_sup,budget_pacer_worker,
-                        crone]}]}.
+              {modules,[budget_pacer_app,budget_pacer_mnesia_manager,
+                        budget_pacer_sup,budget_pacer_worker,crone]}]}.

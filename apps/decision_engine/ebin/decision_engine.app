@@ -5,5 +5,6 @@
               {applications,[kernel,stdlib]},
               {mod,{decision_engine_app,[]}},
               {env,[]},
-              {modules,[decision_engine_app,decision_engine_sup,
-                        decision_engine_worker]}]}.
+              {modules,[decision_engine_aerospike_manager,decision_engine_app,
+                        decision_engine_mnesia_manager,decision_engine_sup,
+                        decision_engine_worker,mnesia_manager]}]}.

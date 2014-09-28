@@ -24,7 +24,7 @@ parse(JsonBidReq) ->
     badv => get_blocked_domains(DecodedBidReq),    
     ext => get_ext(DecodedBidReq)
   },
-  io:format("~p~n",[ParsedBidReq]).
+  ParsedBidReq.
 
 %% ===================================================================
 %% Internal functions
