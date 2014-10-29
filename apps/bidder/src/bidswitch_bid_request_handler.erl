@@ -1,4 +1,4 @@
--module(openrtb2_bid_request_handler).
+-module(bidswitch_bid_request_handler).
 
 %%% -----------------------------------------------------------------------------
 %% API Function Exports

@@ -1,4 +1,4 @@
--module(openrtb2_bid_request_parser).
+-module(bidswitch_bid_request_parser).
 
 -export([parse/1]).
 
