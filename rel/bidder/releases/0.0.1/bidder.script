@@ -1,4 +1,4 @@
-%% script generated at {2014,9,28} {20,3,44}
+%% script generated at {2014,10,29} {21,25,9}
 {script,
     {"bidder","0.0.1"},
     [{preLoaded,
@@ -64,7 +64,8 @@
           cowboy_sup,cowboy_websocket,cowboy_websocket_handler]},
      {path,["$ROOT/lib/bidder-1/ebin"]},
      {primLoad,
-         [bidder_app,bidder_sup,bidder_worker,openrtb2_bid_request_handler,
+         [bidder_app,bidder_sup,bidder_worker,bidswitch_bid_request_handler,
+          bidswitch_bid_request_parser,openrtb2_bid_request_handler,
           openrtb2_bid_request_parser,router]},
      {path,["$ROOT/lib/budget_pacer-1/ebin"]},
      {primLoad,
@@ -251,6 +252,8 @@
                    {id,[]},
                    {modules,
                        [bidder_app,bidder_sup,bidder_worker,
+                        bidswitch_bid_request_handler,
+                        bidswitch_bid_request_parser,
                         openrtb2_bid_request_handler,
                         openrtb2_bid_request_parser,router]},
                    {registered,[]},

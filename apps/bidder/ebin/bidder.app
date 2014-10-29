@@ -6,5 +6,7 @@
               {mod,{bidder_app,[]}},
               {env,[{http_port,8080}]},
               {modules,[bidder_app,bidder_sup,bidder_worker,
+                        bidswitch_bid_request_handler,
+                        bidswitch_bid_request_parser,
                         openrtb2_bid_request_handler,
                         openrtb2_bid_request_parser,router]}]}.

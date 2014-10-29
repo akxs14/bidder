@@ -5,6 +5,7 @@
 routes() ->
   [
     {'_', [
-      {"/openrtb2", openrtb2_bid_request_handler, []}
+      {"/openrtb2",  openrtb2_bid_request_handler,  []},
+      {"/bidswitch", bidswitch_bid_request_handler, []}      
     ]}
   ].
