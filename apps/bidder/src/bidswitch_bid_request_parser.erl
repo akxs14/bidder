@@ -11,17 +11,15 @@ parse(JsonBidReq) ->
   ParsedBidReq = #{
     id => get_id(DecodedBidReq),
     imp => get_impressions(DecodedBidReq),
-    site => get_site(DecodedBidReq),
-    app => get_app(DecodedBidReq),
-    device => get_device(DecodedBidReq),    
+    device => get_device(DecodedBidReq),
     user => get_user(DecodedBidReq),
     at => get_auction_type(DecodedBidReq),
-    tmax => get_max_time(DecodedBidReq),
-    wseat => get_buyer_seats(DecodedBidReq),
-    allimps => get_all_impressions(DecodedBidReq),
-    cur => get_allowed_currencies(DecodedBidReq),
+    site => get_site(DecodedBidReq),
+    app => get_app(DecodedBidReq),
     bcat => get_blocked_advertiser_categories(DecodedBidReq),
     badv => get_blocked_domains(DecodedBidReq),    
+    wseat => get_buyer_seats(DecodedBidReq),
+    cur => get_allowed_currencies(DecodedBidReq),
     ext => get_ext(DecodedBidReq)
   },
   ParsedBidReq.
@@ -37,9 +35,6 @@ get_id(DecodedBidReq) ->
 get_auction_type(DecodedBidReq) ->
   proplists:get_value(<<"at">>,DecodedBidReq, none).
 
-get_max_time(DecodedBidReq) ->
-  proplists:get_value(<<"tmax">>,DecodedBidReq, none).
-
 get_buyer_seats(DecodedBidReq) ->
   proplists:get_value(<<"wseat">>,DecodedBidReq, []).
 
@@ -54,9 +49,6 @@ get_blocked_domains(DecodedBidReq) ->
 
 get_ext(DecodedBidReq) ->
   proplists:get_value(<<"ext">>,DecodedBidReq, none).
-
-get_all_impressions(DecodedBidReq) ->
-  proplists:get_value(<<"allimps">>,DecodedBidReq, 0).
 
 get_impressions(DecodedBidReq) ->
    JsonImps = proplists:get_value(<<"imp">>,DecodedBidReq, none),
