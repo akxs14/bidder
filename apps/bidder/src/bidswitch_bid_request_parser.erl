@@ -183,6 +183,9 @@ get_video_ext(DecodedVideo) ->
     skippable => proplists:get_value(<<"skippable">>,DecodedVideo, none)
   }.
 
+get_blocked_creative_attributes(DecodedVideo) ->
+  proplists:get_value(<<"battr">>,DecodedVideo, none).
+
 get_linearity(DecodedVideo) ->
   proplists:get_value(<<"linearity">>,DecodedVideo, none).
 
@@ -397,27 +400,27 @@ get_device(DecodedBidReq) ->
       #{};
     {_, {DecodedDevice}} ->
       #{
-        dnt => get_do_not_track(DecodedDevice),
-        ua => get_user_agent(DecodedDevice),
         ip => get_ip(DecodedDevice),
         geo => get_geo(DecodedDevice),
+        ua => get_user_agent(DecodedDevice),
+        language => get_language(DecodedDevice),
+        carrier => get_carrier(DecodedDevice),
+        connectiontype => get_connection_type(DecodedDevice),
         didsha1 => get_didsha1(DecodedDevice),
         didmd5 => get_didmd5(DecodedDevice),
         dpidsha1 => get_dpidsha1(DecodedDevice),
         dpidmd5 => get_dpidmd5(DecodedDevice),
-        ipv6 => get_ipv6(DecodedDevice),
-        carrier => get_carrier(DecodedDevice),
-        language => get_language(DecodedDevice),
+        dnt => get_do_not_track(DecodedDevice),
+        ifa => get_ifa(DecodedDevice),
         make => get_make(DecodedDevice),
         model => get_model(DecodedDevice),
         os => get_os(DecodedDevice),
-        osv => get_osv(DecodedDevice),
-        js => get_js_support(DecodedDevice),
-        connectiontype => get_connection_type(DecodedDevice),
-        devicetype => get_device_type(DecodedDevice),
-        flashver => get_flash_ver(DecodedDevice)
+        osv => get_osv(DecodedDevice)
       }
   end.
+
+get_ifa(DecodedDevice) ->
+  proplists:get_value(<<"ifa">>,DecodedDevice, none).
 
 get_do_not_track(DecodedDevice) ->
   proplists:get_value(<<"dnt">>,DecodedDevice, none).
@@ -440,9 +443,6 @@ get_dpidsha1(DecodedDevice) ->
 get_dpidmd5(DecodedDevice) ->
   proplists:get_value(<<"dpidmd5">>,DecodedDevice, none).
 
-get_ipv6(DecodedDevice) ->
-  proplists:get_value(<<"ipv6">>,DecodedDevice, none).
-
 get_carrier(DecodedDevice) ->
   proplists:get_value(<<"carrier">>,DecodedDevice, none).
 
@@ -461,18 +461,8 @@ get_os(DecodedDevice) ->
 get_osv(DecodedDevice) ->
   proplists:get_value(<<"osv">>,DecodedDevice, none).
 
-get_js_support(DecodedDevice) ->
-  proplists:get_value(<<"js">>,DecodedDevice, none).
-
 get_connection_type(DecodedDevice) ->
   proplists:get_value(<<"connectiontype">>,DecodedDevice, none).
-
-get_device_type(DecodedDevice) ->
-  proplists:get_value(<<"devicetype">>,DecodedDevice, none).
-
-get_flash_ver(DecodedDevice) ->
-  proplists:get_value(<<"flashver">>,DecodedDevice, none).
-
 
 %% parse geo object
 get_geo(DecodedBidReq) ->
