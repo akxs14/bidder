@@ -508,29 +508,12 @@ get_user(DecodedBidReq) ->
     {_, {DecodedUser}} ->
       #{
         id => get_id(DecodedUser),
-        buyeruid => get_buyer_user_id(DecodedUser),
-        yob => get_year_of_birth(DecodedUser),
-        gender => get_gender(DecodedUser),
-        keywords => get_keywords(DecodedUser),
-        customdata => get_custom_data(DecodedUser),
-        geo => get_geo(DecodedUser),
-        data => get_data(DecodedUser)
+        buyeruid => get_buyer_user_id(DecodedUser)
       }
   end.
 
 get_buyer_user_id(DecodedUser) ->
   proplists:get_value(<<"buyeruid">>,DecodedUser, none).
-
-get_year_of_birth(DecodedUser) ->
-  proplists:get_value(<<"yob">>,DecodedUser, none).
-
-get_gender(DecodedUser) ->
-  proplists:get_value(<<"gender">>,DecodedUser, none).
-
-get_custom_data(DecodedUser) ->
-  proplists:get_value(<<"customdata">>,DecodedUser, none).
-
-
 
 %% parse data object
 get_data(DecodedUser) ->
