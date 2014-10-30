@@ -47,8 +47,21 @@ get_blocked_advertiser_categories(DecodedBidReq) ->
 get_blocked_domains(DecodedBidReq) ->
   proplists:get_value(<<"badv">>,DecodedBidReq, []).
 
+%% parse bid impression ext object
 get_ext(DecodedBidReq) ->
-  proplists:get_value(<<"ext">>,DecodedBidReq, none).
+  #{
+      ssp => proplists:get_value(<<"ssp">>,DecodedBidReq, none),
+      is_secure => proplists:get_value(<<"is_secure">>,DecodedBidReq, none),
+      creative_params => get_creative_params(proplists:get_value(<<"creative_params">>,DecodedBidReq, none))
+  }.
+
+%% parse creative parameters object from bid impression ext object
+get_creative_params(DecodedCreativeParams) ->
+  #{
+      type => proplists:get_value(<<"type">>,DecodedCreativeParams, none),
+      name => proplists:get_value(<<"name">>,DecodedCreativeParams, none),
+      value => proplists:get_value(<<"value">>,DecodedCreativeParams, none)
+  }.
 
 get_impressions(DecodedBidReq) ->
    JsonImps = proplists:get_value(<<"imp">>,DecodedBidReq, none),
