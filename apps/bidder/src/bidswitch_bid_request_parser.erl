@@ -168,10 +168,11 @@ get_video(DecodedImp) ->
         h => get_height(DecodedVideo),
         startdelay => get_start_delay(DecodedVideo),
         battr => get_blocked_creative_attributes(DecodedVideo),
-        % minbitrate => get_min_bitrate(DecodedVideo),
-        % maxbitrate => get_max_bitrate(DecodedVideo),
+        minbitrate => get_min_bitrate(DecodedVideo),
+        maxbitrate => get_max_bitrate(DecodedVideo),
         api => get_banner_api(DecodedVideo),
         companionad => get_companion_ads(DecodedVideo),
+        companiontype => get_companion_type(DecodedVideo),
         ext => get_video_ext(DecodedVideo)
       }
   end.
@@ -205,6 +206,9 @@ get_max_bitrate(DecodedVideo) ->
 
 get_companion_ads(DecodedVideo) ->
   get_banner(<<"companionad">>, DecodedVideo).
+
+get_companion_type(DecodedVideo) ->
+  get_banner(<<"companiontype">>, DecodedVideo).
 
 
 %% parse site object
