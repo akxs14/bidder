@@ -222,18 +222,11 @@ get_site(DecodedBidReq) ->
     {_, {DecodedSite}} ->
       #{
         id => get_id(DecodedSite),
-        name => get_name(DecodedSite),
         domain => get_domain(DecodedSite),
         cat => get_IAB_categories(DecodedSite),
-        sectioncat => get_section_IAB_categories(DecodedSite),
-        pagecat => get_page_IAB_categories(DecodedSite),
         page => get_page(DecodedSite),
-        privacypolicy => get_privacy_policy(DecodedSite),
-        ref => get_referrer_url(DecodedSite),
-        search => get_search_string(DecodedSite),
         publisher => get_publisher(DecodedSite),
-        content => get_content(DecodedSite),
-        keywords => get_keywords(DecodedSite)
+        ext => get_site_ext(DecodedSite)
       }
   end.
 
@@ -258,15 +251,13 @@ get_page(DecodedSite) ->
 get_privacy_policy(DecodedSite) ->
   proplists:get_value(<<"privacypolicy">>,DecodedSite, none).
 
-get_referrer_url(DecodedSite) ->
-  proplists:get_value(<<"ref">>,DecodedSite, none).
-
-get_search_string(DecodedSite) ->
-  proplists:get_value(<<"search">>,DecodedSite, none).
-
 get_keywords(DecodedSite) ->
   proplists:get_value(<<"keywords">>,DecodedSite, none).
 
+get_site_ext(DecodedSite) ->
+  #{
+    mobile_site => proplists:get_value(<<"mobile_site">>,DecodedSite, none)
+  }.
 
 %% parse app object
 get_app(DecodedBidReq) ->
