@@ -64,33 +64,48 @@ parse_impression(DecodedImp) ->
   #{
     id => get_id(DecodedImp),
     banner => get_banner(<<"banner">>, DecodedImp),
-    displaymanager => get_display_manager(DecodedImp),
-    displaymanagerserver => get_display_manager_server(DecodedImp),
-    instl => get_interstitial(DecodedImp),
-    tagid => get_tag_id(DecodedImp),
+    video => get_video(DecodedImp),
     bidfloor => get_bid_floor(DecodedImp),
-    bidfloorcur => get_bid_floor_currency(DecodedImp),
-    ext => get_ext(DecodedImp),
-    video => get_video(DecodedImp)
+    pmp => get_private_marketplace(DecodedImp),
+    ext => get_impression_ext(DecodedImp)
   }.
 
-get_display_manager(DecodedImp) ->
-  proplists:get_value(<<"displaymanager">>,DecodedImp, none).
-
-get_display_manager_server(DecodedImp) ->
-  proplists:get_value(<<"displaymanagerserver">>,DecodedImp, none).
-
-get_interstitial(DecodedImp) ->
-  proplists:get_value(<<"instl">>,DecodedImp, 0).
-
-get_tag_id(DecodedImp) ->
-  proplists:get_value(<<"tagid">>,DecodedImp, none).
+get_private_marketplace(DecodedImp) ->
+  #{
+    private_auction => proplists:get_value(<<"private_auction">>,DecodedImp, 0),
+    deals => proplists:get_value(<<"deals">>,DecodedImp, 0)    
+  }.
 
 get_bid_floor(DecodedImp) ->
   proplists:get_value(<<"bidfloor">>,DecodedImp, 0).
 
-get_bid_floor_currency(DecodedImp) ->
-  proplists:get_value(<<"bidfloorcur">>,DecodedImp, <<"USD">>).
+
+%% parse impression ext object
+get_impression_ext(DecodedImp) ->
+  #{
+    rubicon => get_rubicon_ext(proplists:get_value(<<"rubicon">>,DecodedImp, none)),
+    google => get_google_ext(proplists:get_value(<<"google">>,DecodedImp, none)),
+    yieldone => get_yieldone_ext(proplists:get_value(<<"yieldone">>,DecodedImp, none)),
+    site_size_session_count => proplists:get_value(<<"site_size_session_count">>,DecodedImp, none)
+  }.
+
+%% parse rubicon ext object
+get_rubicon_ext(_RubiconExt) ->
+  #{
+  }.
+
+%% parse google ext object
+get_google_ext(DecodedGoogleExt) ->
+  #{
+    excluded_attribute => proplists:get_value(<<"excluded_attribute">>,DecodedGoogleExt, none),
+    allowed_vendor_type => proplists:get_value(<<"allowed_vendor_type">>,DecodedGoogleExt, none)
+  }.
+
+%% parse google ext object
+get_yieldone_ext(DecodedYieldOneExt) ->
+  #{
+    inventory_class => proplists:get_value(<<"inventory_class">>,DecodedYieldOneExt, none)
+  }.
 
 
 %% parse banner objects
@@ -100,13 +115,12 @@ get_banner(ElementName, DecodedImp) ->
       #{};
     {_, {DecodedBanner}} ->
       #{
+        id => get_id(DecodedBanner),
         w => get_width(DecodedBanner),
         h => get_height(DecodedBanner),
-        id => get_id(DecodedBanner),
+        btype => get_blocked_creative_types(DecodedBanner),
         pos => get_position(DecodedBanner),
         topframe => get_topframe(DecodedBanner),
-        btype => get_blocked_creative_types(DecodedBanner),
-        battr => get_blocked_creative_attributes(DecodedBanner),
         mimes => get_mime_whitelist(DecodedBanner),
         expdir => get_expandable_ad_properties(DecodedBanner),
         api => get_banner_api(DecodedBanner)
@@ -128,9 +142,6 @@ get_topframe(DecodedBanner) ->
 get_blocked_creative_types(DecodedBanner) ->
   proplists:get_value(<<"btype">>,DecodedBanner, []).
 
-get_blocked_creative_attributes(DecodedBanner) ->
-  proplists:get_value(<<"battr">>,DecodedBanner, []).
-
 get_mime_whitelist(DecodedBanner) ->
   proplists:get_value(<<"mimes">>,DecodedBanner, []).
 
@@ -148,27 +159,28 @@ get_video(DecodedImp) ->
       #{};
     {_, {DecodedVideo}} ->
       #{
-        w => get_width(DecodedVideo),
-        h => get_height(DecodedVideo),
+        mimes => get_mime_whitelist(DecodedVideo),
         linearity => get_linearity(DecodedVideo),
         minduration => get_min_duration(DecodedVideo),
         maxduration => get_max_duration(DecodedVideo),
-        protocol => get_protocol(DecodedVideo),
-        mimes => get_mime_whitelist(DecodedVideo),
+        protocols => get_protocols(DecodedVideo),
+        w => get_width(DecodedVideo),
+        h => get_height(DecodedVideo),
         startdelay => get_start_delay(DecodedVideo),
-        sequence => get_sequence(DecodedVideo),
         battr => get_blocked_creative_attributes(DecodedVideo),
-        maxextended => get_max_extended_video_duration(DecodedVideo),
-        minbitrate => get_min_bitrate(DecodedVideo),
-        maxbitrate => get_max_bitrate(DecodedVideo),
-        boxingallowed => get_boxing_allowed(DecodedVideo),
-        playbackmethod => get_playback_methods(DecodedVideo),
-        delivery => get_delivery_methods(DecodedVideo),
-        pos => get_position(DecodedVideo),
+        % minbitrate => get_min_bitrate(DecodedVideo),
+        % maxbitrate => get_max_bitrate(DecodedVideo),
+        api => get_banner_api(DecodedVideo),
         companionad => get_companion_ads(DecodedVideo),
-        api => get_banner_api(DecodedVideo)
+        ext => get_video_ext(DecodedVideo)
       }
   end.
+
+%% parse video extended object
+get_video_ext(DecodedVideo) ->
+  #{
+    skippable => proplists:get_value(<<"skippable">>,DecodedVideo, none)
+  }.
 
 get_linearity(DecodedVideo) ->
   proplists:get_value(<<"linearity">>,DecodedVideo, none).
@@ -179,32 +191,17 @@ get_min_duration(DecodedVideo) ->
 get_max_duration(DecodedVideo) ->
   proplists:get_value(<<"maxduration">>,DecodedVideo, none).
 
-get_protocol(DecodedVideo) ->
-  proplists:get_value(<<"protocol">>,DecodedVideo, none).
+get_protocols(DecodedVideo) ->
+  proplists:get_value(<<"protocols">>,DecodedVideo, none).
 
 get_start_delay(DecodedVideo) ->
   proplists:get_value(<<"startdelay">>,DecodedVideo, none).
-
-get_sequence(DecodedVideo) ->
-  proplists:get_value(<<"sequence">>,DecodedVideo, 1).
-
-get_max_extended_video_duration(DecodedVideo) ->
-  proplists:get_value(<<"maxextended">>,DecodedVideo, extension_not_allowed).
 
 get_min_bitrate(DecodedVideo) ->
   proplists:get_value(<<"minbitrate">>,DecodedVideo, none).
 
 get_max_bitrate(DecodedVideo) ->
   proplists:get_value(<<"maxbitrate">>,DecodedVideo, none).
-
-get_boxing_allowed(DecodedVideo) ->
-  proplists:get_value(<<"boxingallowed">>,DecodedVideo, 1).
-
-get_playback_methods(DecodedVideo) ->
-  proplists:get_value(<<"playbackmethod">>,DecodedVideo, []).
-
-get_delivery_methods(DecodedVideo) ->
-  proplists:get_value(<<"delivery">>,DecodedVideo, []).
 
 get_companion_ads(DecodedVideo) ->
   get_banner(<<"companionad">>, DecodedVideo).
