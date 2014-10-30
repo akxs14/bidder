@@ -239,17 +239,8 @@ get_domain(DecodedSite) ->
 get_IAB_categories(DecodedSite) ->
   proplists:get_value(<<"cat">>,DecodedSite, []).
 
-get_section_IAB_categories(DecodedSite) ->
-  proplists:get_value(<<"sectioncat">>,DecodedSite, []).
-
-get_page_IAB_categories(DecodedSite) ->
-  proplists:get_value(<<"pagecat">>,DecodedSite, []).
-
 get_page(DecodedSite) ->
   proplists:get_value(<<"page">>,DecodedSite, none).
-
-get_privacy_policy(DecodedSite) ->
-  proplists:get_value(<<"privacypolicy">>,DecodedSite, none).
 
 get_keywords(DecodedSite) ->
   proplists:get_value(<<"keywords">>,DecodedSite, none).
@@ -270,17 +261,15 @@ get_app(DecodedBidReq) ->
         name => get_name(DecodedApp),
         domain => get_domain(DecodedApp),
         cat => get_IAB_categories(DecodedApp),
-        sectioncat => get_section_IAB_categories(DecodedApp),
-        pagecat => get_page_IAB_categories(DecodedApp),
-        ver => get_version(DecodedApp),
         bundle => get_bundle(DecodedApp),
-        privacypolicy => get_privacy_policy(DecodedApp),
-        paid => get_paid(DecodedApp),
         publisher => get_publisher(DecodedApp),
-        content => get_content(DecodedApp),
-        keywords => get_keywords(DecodedApp)
+        storeurl => get_app_store_url(DecodedApp),
+        ver => get_version(DecodedApp)
       }
   end.
+
+get_app_store_url(DecodedApp) ->
+  proplists:get_value(<<"storeurl">>,DecodedApp, none).
 
 get_version(DecodedApp) ->
   proplists:get_value(<<"ver">>,DecodedApp, none).
