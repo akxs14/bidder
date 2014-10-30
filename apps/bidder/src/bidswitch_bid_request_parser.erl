@@ -308,9 +308,7 @@ get_publisher(DecodedSite) ->
     {_, {DecodedPublisher}} ->
       #{
         id => get_id(DecodedPublisher),
-        name => get_name(DecodedPublisher),
-        cat => get_IAB_categories(DecodedPublisher),
-        domain => get_domain(DecodedPublisher)
+        name => get_name(DecodedPublisher)
       }
   end.
 
