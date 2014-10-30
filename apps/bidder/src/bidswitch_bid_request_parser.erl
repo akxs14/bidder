@@ -476,11 +476,8 @@ get_geo(DecodedBidReq) ->
         country => get_country(DecodedGeoData),
         geo => get_geo(DecodedGeoData),
         region => get_region(DecodedGeoData),
-        regionfips104 => get_regionfips104(DecodedGeoData),
-        metro => get_metro(DecodedGeoData),
         city => get_city(DecodedGeoData),
-        zip => get_zip(DecodedGeoData),
-        type => get_type(DecodedGeoData)
+        zip => get_zip(DecodedGeoData)
       }
   end.
 
@@ -496,20 +493,11 @@ get_country(DecodedGeoData) ->
 get_region(DecodedGeoData) ->
   proplists:get_value(<<"region">>,DecodedGeoData, none).
 
-get_regionfips104(DecodedGeoData) ->
-  proplists:get_value(<<"regionfips104">>,DecodedGeoData, none).
-
-get_metro(DecodedGeoData) ->
-  proplists:get_value(<<"metro">>,DecodedGeoData, none).
-
 get_city(DecodedGeoData) ->
   proplists:get_value(<<"city">>,DecodedGeoData, none).
 
 get_zip(DecodedGeoData) ->
   proplists:get_value(<<"zip">>,DecodedGeoData, none).
-
-get_type(DecodedGeoData) ->
-  proplists:get_value(<<"type">>,DecodedGeoData, none).
 
 
 %% parse user object
