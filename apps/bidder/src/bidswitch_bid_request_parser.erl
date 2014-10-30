@@ -73,7 +73,7 @@ parse_impression(DecodedImp) ->
 get_private_marketplace(DecodedImp) ->
   #{
     private_auction => proplists:get_value(<<"private_auction">>,DecodedImp, 0),
-    deals => 
+    deals => get_deals(DecodedImp)
   }.
 
 get_bid_floor(DecodedImp) ->
@@ -87,16 +87,16 @@ get_deals(DecodedImp) ->
 
 %% parse impression objects
 parse_deals([], ParsedDeals) ->
-  ParsedImps;
+  ParsedDeals;
 parse_deals([{HeadDeal} | JsonDeals], ParsedDeals) ->
   parse_deals(JsonDeals, [parse_deal(HeadDeal)|ParsedDeals]).
 
 parse_deal(DecodedDeal) ->
   #{
-    id => get_id(DecodedImp),
-    wseat => get_banner(<<"banner">>, DecodedImp),
-    bidfloor => get_bid_floor(DecodedImp),
-    at => get_auction_type(DecodedImp)
+    id => get_id(DecodedDeal),
+    wseat => get_banner(<<"banner">>, DecodedDeal),
+    bidfloor => get_bid_floor(DecodedDeal),
+    at => get_auction_type(DecodedDeal)
   }.
 
 %% parse impression ext object
