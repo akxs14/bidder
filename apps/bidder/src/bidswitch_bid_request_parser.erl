@@ -1,6 +1,6 @@
 -module(bidswitch_bid_request_parser).
 
--export([parse/1]).
+-export([parse/1, get_id/1]).
 
 %% ===================================================================
 %% API functions
