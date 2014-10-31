@@ -38,22 +38,8 @@ handle_bid_request(Req, State) ->
   {ToBid, BidResponse, Bid} = decision_engine_worker:decide(BidRequest),
   case ToBid of
     no_bid ->
-      HTTPResponse = reply_no_bid(Req);
+      HTTPResponse = bidswitch_bid_response_builder:reply_no_bid(Req);
     bid ->
-      HTTPResponse = reply_bid(Req, BidResponse, Bid)
+      HTTPResponse = bidswitch_bid_response_builder:reply_bid(Req, BidResponse, Bid)
   end,
   {halt, HTTPResponse, State}.
-
-
-reply_no_bid(Req) ->
-  {ok, Req2} = cowboy_req:reply(200, 
-    [{<<"content-type">>, <<"application/json">>}], 
-     jiffy:encode(<<"{\"rest\": \"Hello World!!!!\"}">>), Req ),
-  Req2.
-
-reply_bid(Req, _BidResponse, Bid) ->
-  {ok, Req2} = cowboy_req:reply(200, 
-    [{<<"content-type">>, <<"application/json">>}], 
-     jiffy:encode(<<"{\"rest\": \"Hello World!!!!\"}">>), Req ),
-  Req2.
-

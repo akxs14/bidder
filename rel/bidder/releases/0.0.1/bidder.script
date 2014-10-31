@@ -1,4 +1,4 @@
-%% script generated at {2014,10,31} {0,37,57}
+%% script generated at {2014,10,31} {22,20,33}
 {script,
     {"bidder","0.0.1"},
     [{preLoaded,
@@ -65,8 +65,8 @@
      {path,["$ROOT/lib/bidder-1/ebin"]},
      {primLoad,
          [bidder_app,bidder_sup,bidder_worker,bidswitch_bid_request_handler,
-          bidswitch_bid_request_parser,openrtb2_bid_request_handler,
-          openrtb2_bid_request_parser,router]},
+          bidswitch_bid_request_parser,bidswitch_bid_response_builder,
+          openrtb2_bid_request_handler,openrtb2_bid_request_parser,router]},
      {path,["$ROOT/lib/budget_pacer-1/ebin"]},
      {primLoad,
          [budget_pacer_app,budget_pacer_mnesia_manager,budget_pacer_sup,
@@ -254,6 +254,7 @@
                        [bidder_app,bidder_sup,bidder_worker,
                         bidswitch_bid_request_handler,
                         bidswitch_bid_request_parser,
+                        bidswitch_bid_response_builder,
                         openrtb2_bid_request_handler,
                         openrtb2_bid_request_parser,router]},
                    {registered,[]},

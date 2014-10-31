@@ -8,5 +8,6 @@
               {modules,[bidder_app,bidder_sup,bidder_worker,
                         bidswitch_bid_request_handler,
                         bidswitch_bid_request_parser,
+                        bidswitch_bid_response_builder,
                         openrtb2_bid_request_handler,
                         openrtb2_bid_request_parser,router]}]}.
