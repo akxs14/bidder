@@ -41,6 +41,6 @@ handle_bid_request(Req, State) ->
       {ok, Id} = maps:get(id, BidRequest),
       HTTPResponse = bidswitch_bid_response_builder:reply_no_bid(Id, Req);
     bid ->
-      HTTPResponse = bidswitch_bid_response_builder:reply_bid(Req, BidResponse, Bid)
+      HTTPResponse = bidswitch_bid_response_builder:reply_bid(Req, BidResponse, BidRequest, Bid)
   end,
   {halt, HTTPResponse, State}.
