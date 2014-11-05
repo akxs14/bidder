@@ -44,13 +44,19 @@ prepare_bid_response(BidRequest) ->
   #{
       cur => Currency,
       id => Id,
-      seatbid => [],
-      seat => ?SEATID     
+      seatbid => [{
+        bid => [{
+          id => "1"
+        }]
+        seat => ?SEATID
+      }]
   }.
 
-extract_bid_req_data(_BidRequest) ->
-  Id = "1",
-  Currency = "USD",
+extract_bid_req_data(BidRequest) ->
+  #{ id := Id, cur := Currency } = BidRequest,
   { Id, Currency }.
 
+
+extract_bd_data(BidRequest) ->
+  #{  } = BidRequest.
 
