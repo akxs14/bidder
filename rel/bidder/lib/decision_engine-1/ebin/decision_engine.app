@@ -1,10 +1,16 @@
+%% app generated at {2014,11,16} {19,40,10}
 {application,decision_engine,
              [{description,[]},
               {vsn,"1"},
-              {registered,[]},
-              {applications,[kernel,stdlib]},
-              {mod,{decision_engine_app,[]}},
-              {env,[]},
+              {id,[]},
               {modules,[decision_engine_aerospike_manager,decision_engine_app,
                         decision_engine_mnesia_manager,decision_engine_sup,
-                        decision_engine_worker,mnesia_manager]}]}.
+                        decision_engine_worker,mnesia_manager]},
+              {registered,[]},
+              {applications,[kernel,stdlib]},
+              {included_applications,[]},
+              {env,[]},
+              {maxT,infinity},
+              {maxP,infinity},
+              {mod,{decision_engine_app,[]}}]}.
+
