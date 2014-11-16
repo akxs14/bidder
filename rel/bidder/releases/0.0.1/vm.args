@@ -1,5 +1,5 @@
 ## Name of the node
--name bidder
+-sname bidder
 
 ## Cookie for distributed erlang
 -setcookie pipabu
