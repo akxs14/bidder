@@ -1,0 +1,76 @@
+curl -H "Content-Type: application/json" -d '{
+  "app": {
+    "bundle": "302324249",
+    "cat": [
+            "IAB14",
+            "IAB24"
+    ],
+    "id": "mopub_af8f72a9eaae43d6b1330cada08f86f6",
+    "publisher": {
+            "id": "mopub_agltb3B1Yi1pbmNyEAsSB0FjY291bnQY7cCnEgw"
+    },
+    "ver": "4.2"
+  },
+  "at": 2,
+  "badv": [
+            "badsite.com"
+  ],
+  "bcat": [
+          "IAB7-39",
+          "IAB8-18",
+          "IAB14-1",
+          "IAB25",
+          "IAB26",
+          “BSW3”
+  ],
+  "cur": [
+          "USD"
+  ],
+  "device": {
+              "carrier": "234-30",
+              "connectiontype": 3,
+              "dpidmd5": "c43fba88be23abcc348227dd1d7c044a",
+              "dpidsha1": "a17b984e3431e967230c1fc27cb3fa4029bcf4de",
+            "geo": {
+                    "city": "",
+                    "country": "GB",
+                    "region": "",
+                    "zip": ""
+            },
+  "ifa": "3F6F224C-5F05-4269-B0A3-81637B860A2A",
+  "ip": "31.121.161.211",
+  "language": "en",
+  "make": "samsung",
+  "model": "GT-I9505",
+  “os”: “Android”,
+  “osv”: “4.4.2”,
+  "ua": "Mozilla/5.0 (Linux; Android 4.4.2; GT-I9505 Build/KOT49H) AppleWebKit/537.36
+(KHTML, like Gecko) Version/4.0 Chrome/30.0.0.0 Mobile Safari/537.36"
+  },
+  "ext": {
+            "ssp": "mopub"
+  },
+  "id": "bc9b529e-511a-41c2-a768-dcb139ad4a6a",
+  "imp": [{
+            "banner": {
+                        "battr": [
+                                  9,
+                                  10,
+                                  14,
+                                  6
+                                  ],
+                        "btype": [
+                                  4
+                        ],
+                        "h": 50,
+                        "w": 320
+                      },
+            "bidfloor": 0.70,
+            "id": "1"
+          }],
+  "user": {
+  },
+  "wseat": [
+            "18"
+            ]
+}'  http://localhost:8080/openrtb2
