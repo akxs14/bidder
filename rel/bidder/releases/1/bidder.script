@@ -1,4 +1,4 @@
-%% script generated at {2014,12,1} {21,6,56}
+%% script generated at {2014,12,1} {22,58,49}
 {script,
     {"bidder","1"},
     [{preLoaded,
@@ -76,7 +76,7 @@
           rb_format_supp,release_handler,release_handler_1,sasl,sasl_report,
           sasl_report_file_h,sasl_report_tty_h,si,si_sasl_supp,systools,
           systools_lib,systools_make,systools_rc,systools_relup]},
-     {path,["$ROOT/lib/bidder-1/ebin"]},
+     {path,["$ROOT/lib/bidder-1.0.0/ebin"]},
      {primLoad,
          [bidder_app,bidder_sup,bidder_worker,bidswitch_bid_request_handler,
           bidswitch_bid_request_parser,bidswitch_bid_response_builder,
@@ -294,7 +294,7 @@
           "$ROOT/lib/ranch-1.0.0/ebin","$ROOT/lib/crypto-3.4/ebin",
           "$ROOT/lib/cowlib-1.0.0/ebin","$ROOT/lib/cowboy-2.0.0-pre.1/ebin",
           "$ROOT/lib/mnesia-4.12.1/ebin","$ROOT/lib/sasl-2.4/ebin",
-          "$ROOT/lib/bidder-1/ebin","$ROOT/lib/asn1-3.0.1/ebin",
+          "$ROOT/lib/bidder-1.0.0/ebin","$ROOT/lib/asn1-3.0.1/ebin",
           "$ROOT/lib/compiler-5.0.1/ebin","$ROOT/lib/et-1.5/ebin",
           "$ROOT/lib/hipe-3.11/ebin","$ROOT/lib/inets-5.10.2/ebin",
           "$ROOT/lib/jiffy-0.13.3/ebin","$ROOT/lib/observer-2.0.1/ebin",
@@ -522,7 +522,7 @@
          {application,load,
              [{application,bidder,
                   [{description,[]},
-                   {vsn,"1"},
+                   {vsn,"1.0.0"},
                    {id,[]},
                    {modules,
                        [bidder_app,bidder_sup,bidder_worker,

@@ -1,4 +1,4 @@
-%% app generated at {2014,12,1} {21,7,0}
+%% app generated at {2014,12,1} {21,42,30}
 {application,bidder,
              [{description,[]},
               {vsn,"1"},

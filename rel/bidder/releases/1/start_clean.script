@@ -1,4 +1,4 @@
-%% script generated at {2014,12,1} {21,6,56}
+%% script generated at {2014,12,1} {22,58,49}
 {script,
     {"start_clean",[]},
     [{preLoaded,
@@ -68,7 +68,7 @@
           mnesia_locker,mnesia_log,mnesia_monitor,mnesia_recover,
           mnesia_registry,mnesia_schema,mnesia_snmp_hook,mnesia_snmp_sup,
           mnesia_sp,mnesia_subscr,mnesia_sup,mnesia_text,mnesia_tm]},
-     {path,["$ROOT/lib/bidder-1/ebin"]},
+     {path,["$ROOT/lib/bidder-1.0.0/ebin"]},
      {primLoad,
          [bidder_app,bidder_sup,bidder_worker,bidswitch_bid_request_handler,
           bidswitch_bid_request_parser,bidswitch_bid_response_builder,
@@ -293,7 +293,7 @@
           "$ROOT/lib/asn1-3.0.1/ebin","$ROOT/lib/crypto-3.4/ebin",
           "$ROOT/lib/cowlib-1.0.0/ebin","$ROOT/lib/ranch-1.0.0/ebin",
           "$ROOT/lib/cowboy-2.0.0-pre.1/ebin","$ROOT/lib/mnesia-4.12.1/ebin",
-          "$ROOT/lib/bidder-1/ebin","$ROOT/lib/budget_pacer-1/ebin",
+          "$ROOT/lib/bidder-1.0.0/ebin","$ROOT/lib/budget_pacer-1/ebin",
           "$ROOT/lib/compiler-5.0.1/ebin","$ROOT/lib/decision_engine-1/ebin",
           "$ROOT/lib/et-1.5/ebin","$ROOT/lib/hipe-3.11/ebin",
           "$ROOT/lib/inets-5.10.2/ebin","$ROOT/lib/jiffy-0.13.3/ebin",
@@ -480,7 +480,7 @@
          {application,load,
              [{application,bidder,
                   [{description,[]},
-                   {vsn,"1"},
+                   {vsn,"1.0.0"},
                    {id,[]},
                    {modules,
                        [bidder_app,bidder_sup,bidder_worker,
