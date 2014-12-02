@@ -4,25 +4,22 @@
 %% API Function Exports
 %%% -----------------------------------------------------------------------------
 
--export([ init/3,
-          allowed_methods/2,
-          content_types_accepted/2,
+-export([ init/2,
+          content_types_provided/2,
           handle_bid_request/2,
+          reply_bid/2,
           terminate/3]).
 
 %% ---------------------------------------------------------------------------
 %% API Function Definitions
 %% ---------------------------------------------------------------------------
 
-init(_Transport, _Req, []) ->
-    {upgrade, protocol, cowboy_rest}.
+init(Req, Opts) ->
+    {cowboy_rest, Req, Opts}.
 
-allowed_methods(Req, State) ->
-  {[<<"POST">>, <<"GET">>], Req, State}.
-
-content_types_accepted(Req, State) ->
+content_types_provided(Req, State) ->
   {[
-    {{<<"application">>,<<"json">>,[]}, reply_bid}
+    {<<"application/json">>, reply_bid}
   ], Req, State}.
 
 terminate(_Reason, _Req, _State) ->

@@ -88,7 +88,7 @@ code_change(_OldVsn, State, _Extra) ->
 init([]) ->
   crone:start([
   {
-    {daily, {every, {120, sec} } },
+    {daily, {every, {120, seconds} } },
     {budget_pacer_worker, pace_budget, []}
   }]),
   {ok, #state{}}.
