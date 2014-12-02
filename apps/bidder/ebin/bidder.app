@@ -1,6 +1,6 @@
 {application,bidder,
              [{description,[]},
-              {vsn,"1"},
+              {vsn,"1.0.0"},
               {registered,[]},
               {applications,[kernel,stdlib,mnesia,cowboy]},
               {mod,{bidder_app,[]}},

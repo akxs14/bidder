@@ -1,5 +1,4 @@
 -module(bidder_sup).
-
 -behaviour(supervisor).
 
 %% API

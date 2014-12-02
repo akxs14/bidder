@@ -18,11 +18,11 @@ init(_Transport, _Req, []) ->
     {upgrade, protocol, cowboy_rest}.
 
 allowed_methods(Req, State) ->
-  {[<<"POST">>], Req, State}.
+  {[<<"POST">>, <<"GET">>], Req, State}.
 
 content_types_accepted(Req, State) ->
   {[
-    {{<<"application">>,<<"json">>,[]}, handle_bid_request}
+    {{<<"application">>,<<"json">>,[]}, reply_bid}
   ], Req, State}.
 
 terminate(_Reason, _Req, _State) ->
@@ -38,22 +38,19 @@ handle_bid_request(Req, State) ->
   {ToBid, BidResponse, Bid} = decision_engine_worker:decide(BidRequest),
   case ToBid of
     no_bid ->
-      HTTPResponse = reply_no_bid(Req);
+      HTTPResponse = reply_no_bid(Req, State);
     bid ->
-      HTTPResponse = reply_bid(Req, BidResponse, Bid)
+      HTTPResponse = reply_bid(Req, State)
   end,
   {halt, HTTPResponse, State}.
 
 
-reply_no_bid(Req) ->
-  {ok, Req2} = cowboy_req:reply(200, 
-    [{<<"content-type">>, <<"application/json">>}], 
-     jiffy:encode(<<"{\"rest\": \"Hello World!!!!\"}">>), Req ),
-  Req2.
+reply_no_bid(Req, State) ->
+  Body = <<"{\"rest\": \"Hello World!\"}">>,
+  {Body, Req, State}.
 
-reply_bid(Req, _BidResponse, Bid) ->
-  {ok, Req2} = cowboy_req:reply(200, 
-    [{<<"content-type">>, <<"application/json">>}], 
-     jiffy:encode(<<"{\"rest\": \"Hello World!!!!\"}">>), Req ),
-  Req2.
+
+reply_bid(Req, State) ->
+  Body = <<"{\"rest\": \"Hello World!\"}">>,
+  {Body, Req, State}.
 
