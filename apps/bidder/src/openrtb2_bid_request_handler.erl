@@ -30,17 +30,19 @@ terminate(_Reason, _Req, _State) ->
 %%% -----------------------------------------------------------------------------
 
 handle_bid_request(Req, State) ->
-  {ok, Body, _Req1} = cowboy_req:body(Req),
+  {ok, Body, _} = cowboy_req:body(Req),
   BidRequest = openrtb2_bid_request_parser:parse(Body),
-  {ToBid, BidResponse, Bid} = decision_engine_worker:decide(BidRequest),
-  case ToBid of
-    no_bid ->
-      HTTPResponse = reply_no_bid(Req, State);
-    bid ->
-      HTTPResponse = reply_bid(Req, State)
-  end,
-  {halt, HTTPResponse, State}.
-
+  reply_bid(Req, State).
+  % {ok, Body, _Req1} = cowboy_req:body(Req),
+  % BidRequest = openrtb2_bid_request_parser:parse(Body),
+  % {ToBid, BidResponse, Bid} = decision_engine_worker:decide(BidRequest),
+  % case ToBid of
+  %   bid ->
+  %     {Body,_,_} = reply_bid(Req, State);
+  %   _ ->
+  %     {Body,_,_} = reply_no_bid(Req, State)
+  % end,
+  % {Body, Req, State}.
 
 reply_no_bid(Req, State) ->
   Body = <<"{\"rest\": \"Hello World!\"}">>,
