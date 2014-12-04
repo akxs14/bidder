@@ -1,4 +1,4 @@
--module(decision_engine_aerospike_manager).
+-module(decision_engine_redis_manager).
 
 -import(aerospike,
 [connect/2, put/6, getAll/5, delete/4, shutdownAll/0 ]).
